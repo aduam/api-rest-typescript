@@ -1,9 +1,11 @@
 import { Router } from 'express';
+import { signup, signin, profile } from '../controllers/authController';
+import { tokenValidation } from '../lib/authVerify';
 
 const router: Router = Router();
 
-router.get('/', (req, res) => {
-  res.send({ message: 'hello-world' });
-})
+router.post('/signup', signup)
+router.post('/signin', signin)
+router.get('/profile', tokenValidation, profile)
 
 export default router;
